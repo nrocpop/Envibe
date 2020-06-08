@@ -2,8 +2,10 @@ language: java
 jdk: openjdk8
 os: linux
 dist: bionic
+services:
+  - postgresql
 addons:
-  postgresql: "12.2"
+  postgresql: "12"
 env:
   global:
     - JDBC_DATABASE_URL=jdbc:postgres://postgres@127.0.0.1:5432/travis_ci_test
