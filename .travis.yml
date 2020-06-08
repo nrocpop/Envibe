@@ -1,0 +1,29 @@
+language: java
+# Use the OSS implementation of Oracle Java 1.8.0
+jdk: openjdk8
+os: linux
+# Use Ubuntu 18.04 Bionic to match Heroku's environment
+dist: bionic
+#### DB services commented out due to environment issues with Travis CI
+#services:
+#  - postgresql
+#env:
+#  global:
+#    - JDBC_DATABASE_URL=jdbc:postgres://postgres@127.0.0.1:5432/travis_ci_test
+#    - PGPORT=5432
+before_install:
+  - mvn -N io.takari:maven:wrapper
+  - chmod +x ./mvnw
+#before_script:
+#  - psql -c 'create database travis_ci_test;' -U postgres
+#  - ./mvnw flyway:migrate
+before_deploy:
+  - mvn clean package
+deploy:
+  provider: heroku
+  strategy: api
+  app: envibe
+  on:
+    branch: master
+  edge: true
+  run: mvnw flyway:migrate
