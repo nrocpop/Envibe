@@ -4,6 +4,9 @@ os: linux
 dist: bionic
 services:
   - postgresql
+env:
+  global:
+    - JDBC_DATABASE_URL=jdbc:postgres://postgres@127.0.0.1:5432/travis_ci_test
 before_install:
   - chmod +x mvnw
 before_script:
