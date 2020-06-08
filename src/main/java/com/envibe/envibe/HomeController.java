@@ -10,6 +10,9 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
+        // PARAMETERS: None
+        // PATH: "/"
+        // TEMPLATE: "/resources/templates/index.html
         return "index";
     }
 }
