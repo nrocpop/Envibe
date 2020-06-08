@@ -2,11 +2,12 @@ language: java
 jdk: openjdk8
 os: linux
 dist: bionic
-services:
-  - postgresql
+addons:
+  postgresql: "12.2"
 env:
   global:
     - JDBC_DATABASE_URL=jdbc:postgres://postgres@127.0.0.1:5432/travis_ci_test
+    - PGPORT=5432
 before_install:
   - chmod +x mvnw
 before_script:
