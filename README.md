@@ -5,7 +5,7 @@
 *For minimal issues, try to get your dev environment as close as possible to this list*
 - Ubuntu 18.04 Bionic (64-bit)
 - PostgreSQL 12.2
-- Oracle Java 1.8.0 build 251
+- OpenJDK Java 1.8.0 build 251
 - Maven 3
 
 ## Environment Variables
