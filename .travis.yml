@@ -1,0 +1,17 @@
+language: java
+jdk: oraclejdk8
+os: linux
+dist: bionic
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - ./mvnw flyway:migrate
+deploy:
+  provider: heroku
+  strategy: api
+  app: envibe
+  on:
+    branch: master
+  edge: true
+  run: ./mvnw flyway:migrate
