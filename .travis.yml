@@ -7,6 +7,8 @@ services:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - ./mvnw flyway:migrate
+before_deploy:
+  - ./mvnw clean package
 deploy:
   provider: heroku
   strategy: api
