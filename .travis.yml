@@ -12,13 +12,17 @@ addons:
   apt:
     update: true
     packages:
-      - postgresql-12
-      - postgresql-client-12
+      - postgresql-12.2
+      - postgresql-client-12.2
 # Specify environment variables for database integration.
 env:
   global:
     - JDBC_DATABASE_URL=jdbc:postgres://postgres@127.0.0.1:5432/travis_ci_test
     - PGPORT=5432
+# For some reason, we need to re-install Maven Wrapper and set the execute bit on the .sh file.
+before_install:
+  - mvn -N io.takari:maven:wrapper
+  - chmod +x ./mvnw
 # Initialize the database and perform all necessary migrations.
 before_script:
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
