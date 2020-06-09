@@ -1,29 +1,37 @@
 language: java
-# Use the OSS implementation of Oracle Java 1.8.0
+# Use the OSS implementation of Oracle Java 1.8.0.
 jdk: openjdk8
+# Use Ubuntu Linux 18.04 Bionic to match Heroku's environment.
 os: linux
-# Use Ubuntu 18.04 Bionic to match Heroku's environment
 dist: bionic
-#### DB services commented out due to environment issues with Travis CI
-#services:
-#  - postgresql
-#env:
-#  global:
-#    - JDBC_DATABASE_URL=jdbc:postgres://postgres@127.0.0.1:5432/travis_ci_test
-#    - PGPORT=5432
+# Use PostgreSQL 12.2 to match Heroku's environment.
+services:
+  - postgresql
+# Specify environment variables for database integration.
+env:
+  global:
+    - JDBC_DATABASE_URL=jdbc:postgres://postgres@127.0.0.1:5432/travis_ci_test
+    - PGPORT=5432
+# Re-install Maven Wrapper to fix random mvnw permission denied errors.
 before_install:
   - mvn -N io.takari:maven:wrapper
   - chmod +x ./mvnw
-#before_script:
-#  - psql -c 'create database travis_ci_test;' -U postgres
-#  - ./mvnw flyway:migrate
+# Initialize the database and perform all necessary migrations.
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - ./mvnw flyway:migrate
+# Build project into JAR file for deployment onto Heroku.
 before_deploy:
   - mvn clean package
 deploy:
   provider: heroku
+  # Use API method to avoid git collision issues.
   strategy: api
   app: envibe
+  # Only deploy on master branch builds.
   on:
     branch: master
+  # Use deploy API v2 as v1 is deprecated
   edge: true
-  run: mvnw flyway:migrate
+  # Run database migrations on remote server before booting.
+  run: mvn flyway:migrate
