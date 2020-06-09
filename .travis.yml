@@ -4,16 +4,10 @@ jdk: openjdk8
 # Use Ubuntu Linux 18.04 Bionic to match Heroku's environment.
 os: linux
 dist: bionic
-# Use PostgreSQL 12 to match Heroku's environment.
+# Use PostgreSQL to match Heroku's environment.
+# Trying to use version 12.2 causes issues and is not worth pursuing.
 services:
   - postgresql
-addons:
-  postgresql: "12"
-  apt:
-    update: true
-    packages:
-      - postgresql-12
-      - postgresql-client-12
 # Specify environment variables for database integration.
 env:
   global:
