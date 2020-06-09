@@ -18,6 +18,14 @@
 - `mvnw flyway:migrate` Updates the schema of your local PostgreSQL database.
 - `mvnw test` Runs unit test suite (Requires JUnit).
 
+## How To Update Database
+This project uses Flyway to manage database schemas. To change how the database is set up, create a migration.
+1. Go to `/src/main/resources/db/migration`
+2. Create a SQL file with the format `VX__Useful_Name_Here.sql`. Note that the filename MUST start with a capital `V`, followed by a number higher than any of the other files in the `/migration` folder(e.g. V1, V2, V3...). After `VX`, there should be TWO underscores(`__`).
+3. Insert your SQL code into the file you just created.
+4. Ensure that the environment variable `JDBC_DATABASE_URL` is defined and is a valid JDBC URI to a running instance of PostgreSQL.
+5. From the project root, run `./mvnw flyway:migrate`. The database schema will be updated automatically.
+
 ## Project Links
 - [Build logs](https://travis-ci.org/Nvibe/Envibe)
 - [Live website](https://envibe.herokuapp.com/)
