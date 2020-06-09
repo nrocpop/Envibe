@@ -34,5 +34,3 @@ deploy:
     branch: master
   # Use deploy API v2 as v1 is deprecated
   edge: true
-  # Run database migrations on remote server before booting.
-  run: mvn flyway:migrate
