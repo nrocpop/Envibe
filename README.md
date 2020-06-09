@@ -4,7 +4,6 @@
 ## Environment Info
 *For minimal issues, try to get your dev environment as close as possible to this list*
 - Ubuntu 18.04 Bionic (64-bit)
-- PostgreSQL 12.2
 - OpenJDK Java 1.8.0 build 251
 - Maven 3
 
@@ -15,8 +14,16 @@
 ## Basic Commands
 - `mvnw spring-boot:run` Runs server locally.
 - `mvnw clean package` Builds JAR file, rarely needed.
-- `mvnw flyway:migrate` Updates the schema of your local PostgreSQL database.
+- `mvnw flyway:migrate` Updates the schema of your local PostgreSQL database (done automatically on bootup).
 - `mvnw test` Runs unit test suite (Requires JUnit).
+
+## How To Use H2
+Instead of messing around with PostgreSQL, you can run an in-memory database for testing purposes.
+1. Uncomment the commented section in `/pom.xml`.
+2. Run `mvnw clean install` to install dependencies.
+3. Within your IDE, set the environment variable `JDBC_DATABASE_URL` to `jdbc:h2:~/test;`.
+4. Every time you start the webapp, it will create a temporary database in memory that your application will use. The database will be deleted every time you close the webapp.
+5. Remember to re-comment the H2 dependency in `/pom.xml` before you commit your code through Git (working on a fix for this soon).
 
 ## How To Update Database
 This project uses Flyway to manage database schemas. To change how the database is set up, create a migration.
