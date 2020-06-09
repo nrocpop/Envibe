@@ -7,19 +7,22 @@ dist: bionic
 # Use PostgreSQL 12.2 to match Heroku's environment.
 services:
   - postgresql
+addons:
+  postgresql: "12.2"
+  apt:
+    update: true
+    packages:
+      - postgresql-12
+      - postgresql-client-12
 # Specify environment variables for database integration.
 env:
   global:
     - JDBC_DATABASE_URL=jdbc:postgres://postgres@127.0.0.1:5432/travis_ci_test
     - PGPORT=5432
-# Re-install Maven Wrapper to fix random mvnw permission denied errors.
-before_install:
-  - mvn -N io.takari:maven:wrapper
-  - chmod +x ./mvnw
 # Initialize the database and perform all necessary migrations.
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - ./mvnw flyway:migrate
+  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+  - mvn flyway:migrate
 # Build project into JAR file for deployment onto Heroku.
 before_deploy:
   - mvn clean package
