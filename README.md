@@ -1,6 +1,9 @@
 # Envibe
 [![Build Status](https://travis-ci.org/Nvibe/Envibe.svg?branch=master)](https://travis-ci.org/Nvibe/Envibe)
 
+## How To Contribute
+The `master` branch is protected. This means that you cannot directly push to the `master` branch. Instead, use the box above to create a new branch (for example: `fix-registration-form`). Once you have submitted your code to the branch, and your feature/fix is complete, sumbit a PR. GitHub will show you if you need to change anything before you merge.
+
 ## Environment Info
 *For minimal issues, try to get your dev environment as close as possible to this list*
 - Ubuntu 18.04 Bionic (64-bit)
