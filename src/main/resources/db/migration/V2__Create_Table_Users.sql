@@ -1,6 +1,6 @@
 -- Script courtesy of https://www.roytuts.com/spring-boot-security-form-based-jdbc-authentication-using-userdetailsservice/
 
--- Creates a table to store all registered user with their hashed password.
+-- Creates a table to store all registered users with their hashed password.
 CREATE TABLE user (
     user_name varchar(255) NOT NULL PRIMARY KEY,
     user_password varchar(255) NOT NULL,
