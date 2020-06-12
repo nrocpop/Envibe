@@ -15,10 +15,10 @@ public class UserDao {
     private JdbcTemplate jdbcTemplate;
 
     // Create our prepared SQL statements as final Strings.
-    final String queryCreate = "INSERT INTO user (user_name, user_pass, user_email, user_role) VALUES (?, ?, ?, ?)";
-    final String queryRead = "SELECT user_name, user_pass, user_email, user_role FROM user WHERE user_name = ?";
-    final String queryUpdate = "UPDATE user SET user_pass = ?, user_email = ?, user_role = ? WHERE user_name = ?";
-    final String queryDelete = "DELETE FROM user WHERE user_name = ?";
+    final String queryCreate = "INSERT INTO user_account (user_name, user_pass, user_email, user_role) VALUES (?, ?, ?, ?)";
+    final String queryRead = "SELECT user_name, user_pass, user_email, user_role FROM user_account WHERE user_name = ?";
+    final String queryUpdate = "UPDATE user_account SET user_pass = ?, user_email = ?, user_role = ? WHERE user_name = ?";
+    final String queryDelete = "DELETE FROM user_account WHERE user_name = ?";
 
     // CRUD definitions for User model.
     public void create(User user) {
