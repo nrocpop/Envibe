@@ -11,5 +11,5 @@ CREATE TABLE IF NOT EXISTS user_account (
 CREATE TABLE IF NOT EXISTS user_role (
     user_name VARCHAR(255) NOT NULL,
     user_role VARCHAR(15) NOT NULL,
-    FOREIGN KEY (user_name) REFERENCES user(user_name)
+    FOREIGN KEY (user_name) REFERENCES user_account(user_name)
 );
