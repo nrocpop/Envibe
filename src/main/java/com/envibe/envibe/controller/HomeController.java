@@ -8,19 +8,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
+    // Landing page.
+    // PARAMETERS: None
+    // PATH: GET:/
+    // TEMPLATE: /resources/templates/index.html
     @GetMapping("/")
     public String index(Model model) {
-        // PARAMETERS: None
-        // PATH: "/"
-        // TEMPLATE: "/resources/templates/index.html
+        // Return index.html template.
         return "index";
     }
 
+    // Test endpoint for authentication code.
+    // PARAMETERS: None
+    // PATH: GET:/restricted
+    // TEMPLATE: /resources/templates/index.html
     @GetMapping("/restricted")
     public String restricted(Model model) {
-        // PARAMETERS: None
-        // PATH: "/"
-        // TEMPLATE: "/resources/templates/index.html
         return "restricted";
     }
 }

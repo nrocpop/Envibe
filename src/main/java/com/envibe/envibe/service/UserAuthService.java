@@ -13,12 +13,14 @@ import com.envibe.envibe.model.User;
 
 @Service
 public class UserAuthService implements UserDetailsService {
+    // Use our internal data access object to access SQL data.
     @Autowired
     private UserDao userDao;
 
+    // Load a user by username to validate the current user session.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.getUser(username);
+        User user = userDao.read(username);
         if (user == null) {
             throw new UsernameNotFoundException("User '" + username + "' not found.");
         }

@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.envibe.envibe.model.User;
 
 public class UserRowMapper implements RowMapper<User> {
+    // Maps our internal SQL table layout to a valid User object.
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new User(
