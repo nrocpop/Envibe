@@ -22,11 +22,8 @@ The `master` branch is protected. This means that you cannot directly push to th
 
 ## How To Use H2
 Instead of messing around with PostgreSQL, you can run an in-memory database for testing purposes.
-1. Uncomment the commented section in `/pom.xml`.
-2. Run `mvnw clean install` to install dependencies.
-3. Within your IDE, set the environment variable `JDBC_DATABASE_URL` to `jdbc:h2:~/test;`.
-4. Every time you start the webapp, it will create a temporary database in memory that your application will use. The database will be deleted every time you close the webapp.
-5. Remember to re-comment the H2 dependency in `/pom.xml` before you commit your code through Git (working on a fix for this soon).
+1. Within your IDE, set the environment variable `JDBC_DATABASE_URL` to `jdbc:h2:mem:test_db`.
+2. Every time you start the webapp, it will create a temporary database in memory that your application will use. The database will be deleted every time you close the webapp.
 
 ## How To Update Database
 This project uses Flyway to manage database schemas. To change how the database is set up, create a migration.
