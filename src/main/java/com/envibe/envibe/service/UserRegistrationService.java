@@ -4,6 +4,7 @@ import com.envibe.envibe.dao.UserDao;
 import com.envibe.envibe.exception.UserAlreadyExistsException;
 import com.envibe.envibe.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

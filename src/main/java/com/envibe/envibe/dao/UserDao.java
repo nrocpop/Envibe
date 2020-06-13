@@ -2,6 +2,7 @@ package com.envibe.envibe.dao;
 
 import com.envibe.envibe.exception.UserAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -15,9 +16,9 @@ public class UserDao {
     private JdbcTemplate jdbcTemplate;
 
     // Create our prepared SQL statements as final Strings.
-    final String queryCreate = "INSERT INTO user_account (user_name, user_pass, user_email, user_role) VALUES (?, ?, ?, ?)";
-    final String queryRead = "SELECT user_name, user_pass, user_email, user_role FROM user_account WHERE user_name = ?";
-    final String queryUpdate = "UPDATE user_account SET user_pass = ?, user_email = ?, user_role = ? WHERE user_name = ?";
+    final String queryCreate = "INSERT INTO user_account (user_name, user_password, user_email, user_role) VALUES (?, ?, ?, ?)";
+    final String queryRead = "SELECT user_name, user_password, user_email, user_role FROM user_account WHERE user_name = ?";
+    final String queryUpdate = "UPDATE user_account SET user_password = ?, user_email = ?, user_role = ? WHERE user_name = ?";
     final String queryDelete = "DELETE FROM user_account WHERE user_name = ?";
 
     // CRUD definitions for User model.
@@ -26,7 +27,11 @@ public class UserDao {
     }
 
     public User read(String username) {
-        return jdbcTemplate.queryForObject(queryRead, new String[] { username }, new UserRowMapper());
+        try {
+            return jdbcTemplate.queryForObject(queryRead, new String[]{username}, new UserRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     public void update(User user) {

@@ -5,24 +5,25 @@ import com.envibe.envibe.model.validation.constraints.ValidRole;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-public class User {
-    @NotNull
-    @NotEmpty
+public class User implements Serializable {
+    //@NotNull
+    //@NotEmpty
     private String username;
 
-    @NotNull
-    @NotEmpty
+    //@NotNull
+    //@NotEmpty
     private String password;
 
-    @NotNull
-    @NotEmpty
-    @ValidRole
+    //@NotNull
+    //@NotEmpty
+    //@ValidRole
     private String role;
 
-    @NotNull
-    @NotEmpty
-    @Email
+    //@NotNull
+    //@NotEmpty
+    //@Email
     private String email;
 
     public User() {
@@ -47,6 +48,10 @@ public class User {
         return this.username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword()
     {
         return this.password;
@@ -58,5 +63,13 @@ public class User {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
