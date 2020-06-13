@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example </title>
+    <title>Registration</title>
 </head>
 <body>
 <div id="register-box">
@@ -28,14 +28,10 @@
                 <td><input type='password' th:field="*{password}" /></td>
             </tr>
             <tr>
-                <td colspan='2'><input name="submit" type="submit"
-                                       value="Submit" /></td>
+                <td colspan='2'><input name="submit" type="submit" value="Submit" /></td>
             </tr>
-            <!-- TODO: Even though it's not a security risk in this application, it's probably not good practice to have this here. -->
-            <input type="hidden" th:field="*{role}" value="ROLE_USER" />
         </table>
-        <input type="hidden" name="${_csrf.parameterName}"
-               value="${_csrf.token}" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>
 </div>
 </body>

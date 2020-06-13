@@ -71,10 +71,6 @@ public class AuthenticationController {
     // TEMPLATE: None
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User userDto, HttpServletRequest request, Errors errors) {
-        System.out.println(userDto.getUsername());
-        System.out.println(userDto.getPassword());
-        System.out.println(userDto.getEmail());
-        System.out.println(userDto.getRole());
         // Manually assign the role of the user.
         userDto.setRole("ROLE_USER");
         // Push new account details to the user service and attempt to save it.
